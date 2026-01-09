@@ -53,7 +53,7 @@ module PromptInjection {
     PromptContentSink() {
       this = OpenAI::getContentNode().asSink()
       or
-      this = Agent::getContentNode().asSink()
+      this = AgentSDK::getContentNode().asSink()
     }
   }
 
