@@ -26,3 +26,13 @@ def get_input2():
             }
         ] 
     )
+
+    result2 = Runner.run_sync(
+        agent,
+        [
+            {
+                "role": "user",
+                "content": input, # $Alert[py/prompt-injection]
+            }
+        ] 
+    )

@@ -17,14 +17,13 @@ module AgentSDK {
   /** Gets a reference to the `agents.Agent` class. */
   API::Node classRef() { result = API::moduleImport("agents").getMember("Runner") }
 
+  API::Node runMembers() { result = classRef().getMember(["run", "run_sync", "run_streamed"]) }
+
   /** Gets a reference to a potential property of `agents.Runner` called input which can refer to a system prompt depending on the role specified. */
   API::Node getContentNode() {
-    result =
-      classRef()
-          .getMember(["run", "run_sync", "run_streamed"])
-          .getKeywordParameter("input")
-          .getASubscript()
-          .getSubscript("content")
+    result = runMembers().getKeywordParameter("input").getASubscript().getSubscript("content")
+    or
+    result = runMembers().getParameter(_).getASubscript().getSubscript("content")
   }
 }
 
